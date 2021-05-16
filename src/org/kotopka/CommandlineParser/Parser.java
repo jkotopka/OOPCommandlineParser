@@ -52,7 +52,7 @@ public class Parser {
 
             if (options.containsKey(option))
                 executeOptionAndUpdateIndex(option);
-            else if (isInvalidOption(arg)) //XXX: not super happy about this but it seems to work as intended
+            else if (isInvalidOption(arg))
                 printInvalidOptionMessageAndExit(arg);
             else
                 executeOptionAndUpdateIndex(defaultOption);
