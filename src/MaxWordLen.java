@@ -18,10 +18,13 @@ public class MaxWordLen extends AbstractOption {
 
     @Override
     public int execute(String[] args, int argIndex) {
+        String arg = args[++argIndex];
+
         try {
-            value = Integer.parseInt(args[++argIndex]);
+            value = Integer.parseInt(arg);
         } catch (NumberFormatException nfe) {
-            System.err.println("Invalid number format");
+            System.err.println("Invalid number format: " + arg);
+            System.exit(-1);
         }
 
         return ++argIndex;
