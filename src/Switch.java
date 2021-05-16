@@ -40,10 +40,7 @@ public enum Switch {
     }
 
     public static Switch get(String name) {
-        if (ENUM_MAP.containsKey(name))
-            return ENUM_MAP.get(name.toLowerCase());
-        else
-            return COLLECT_PHRASE;
+        return ENUM_MAP.get(name.toLowerCase());
     }
 
     @Override
