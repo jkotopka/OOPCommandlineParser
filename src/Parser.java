@@ -34,7 +34,7 @@ public class Parser {
             if (options.containsKey(option))
                 executeOptionAndUpdateIndex(option);
             else if (arg.startsWith("-")) //XXX: not super happy about this but it seems to work as intended
-                invalidOptionSelected(arg);
+                printInvalidOptionMessageAndExit(arg);
             else
                 executeOptionAndUpdateIndex(defaultOption);
         }
@@ -44,7 +44,7 @@ public class Parser {
         argIndex = options.get(option).execute(args, argIndex);
     }
 
-    private void invalidOptionSelected(String arg) {
+    private void printInvalidOptionMessageAndExit(String arg) {
         System.err.println("Invalid option: " + arg);
         printOptions();
         System.exit(-1);
