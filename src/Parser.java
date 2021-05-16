@@ -2,6 +2,7 @@ import java.util.*;
 
 public class Parser {
 
+    private int argIndex;
     private final String[] args;
     private final Map<Switch, Option> optionMap;
 
@@ -17,22 +18,27 @@ public class Parser {
     }
 
     public void parseArgs() {
-        int argIndex = 0;
-
         while (argIndex < args.length) {
-            String arg = args[argIndex];
+            String arg    = args[argIndex];
             Switch option = Switch.get(arg);
 
-            if (optionMap.containsKey(option)) {
-                argIndex = optionMap.get(option).execute(args, argIndex);
-            } else if (arg.startsWith("-")) {
-                System.err.println("Invalid option: " + arg);
-                printOptions();
-                System.exit(-1);
-            } else {
-                argIndex = optionMap.get(Switch.NO_OPTION).execute(args, argIndex);
-            }
+            if (optionMap.containsKey(option))
+                executeOptionAndUpdateIndex(option);
+            else if (arg.startsWith("-"))
+                invalidOptionSelected(arg);
+            else
+                executeOptionAndUpdateIndex(Switch.COLLECT_PHRASE);
         }
+    }
+
+    private void executeOptionAndUpdateIndex(Switch option) {
+        argIndex = optionMap.get(option).execute(args, argIndex);
+    }
+
+    private void invalidOptionSelected(String arg) {
+        System.err.println("Invalid option: " + arg);
+        printOptions();
+        System.exit(-1);
     }
 
     public Option getOption(Switch commandlineSwitch) {
@@ -62,9 +68,11 @@ public class Parser {
         parser.parseArgs();
 
         parser.printOptions();
-//        parser.printValues();
+        parser.printValues();
         parser.printState();
 
-//        System.out.println(parser.getOption(Switch.NO_OPTION).getString());
+        System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
+        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
+        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
     }
 }
