@@ -59,16 +59,16 @@ public class Parser {
         }
     }
 
+    private void executeOptionAndUpdateIndex(Switch option) {
+        argIndex = options.get(option).execute(args, argIndex);
+    }
+
     private boolean isInvalidOption(String arg) {
         // XXX: checks if the arg looks like a valid option but isn't
         for (String s : validDelimiters)
             if (arg.startsWith(s)) return true;
 
         return false;
-    }
-
-    private void executeOptionAndUpdateIndex(Switch option) {
-        argIndex = options.get(option).execute(args, argIndex);
     }
 
     private void printInvalidOptionMessageAndExit(String arg) {
