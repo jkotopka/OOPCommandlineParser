@@ -20,7 +20,8 @@ public enum Switch {
     EXCLUDE_WORD("-ew"),
     INCLUDE_WORD_WITH_SUFFIX("-iws"),
     HELP("-h"),
-    COLLECT_PHRASE(""); // XXX: not really a proper switch
+    COLLECT_PHRASE(""), // XXX: not really a proper switch
+    DEFAULT_DELIMITER("-");
 
     private final String label;
 
