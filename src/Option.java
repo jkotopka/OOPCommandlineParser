@@ -1,5 +1,5 @@
 public interface Option {
-    String getSwitch();
+    Switch getSwitch();
     String getHelp();
     String getState();
     int execute(String[] args, int argIndex);
