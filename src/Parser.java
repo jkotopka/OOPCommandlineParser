@@ -11,6 +11,13 @@ public class Parser {
         this.options = new LinkedHashMap<>();
     }
 
+    public Parser addOptions(Option... optionArgs) {
+        for (Option o : optionArgs)
+            options.put(o.getSwitch(), o);
+
+        return this;
+    }
+
     public Parser addOption(Option option) {
         options.put(option.getSwitch(), option);
 
@@ -59,11 +66,12 @@ public class Parser {
 
     public static void main(String[] args) {
         Parser parser = new Parser(args)
-            .addOption(new MaxWordLen())
-            .addOption(new MinWordLen())
-            .addOption(new RestrictPermutations())
-            .addOption(new ExcludeDuplicates())
-            .addOption(new PhraseCollector());
+                .addOptions(
+                        new MaxWordLen(),
+                        new MinWordLen(),
+                        new RestrictPermutations(),
+                        new ExcludeDuplicates(),
+                        new PhraseCollector());
 
         parser.parseArgs();
 
