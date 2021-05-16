@@ -6,7 +6,7 @@ public class PhraseCollector extends AbstractOption {
     private final List<String> value;
 
     public PhraseCollector( ) {
-        this.commandlineSwitch = Switch.NO_OPTION;
+        this.commandlineSwitch = Switch.COLLECT_PHRASE;
         this.description = "Collect phrase words";
         this.value = new ArrayList<>();
     }
