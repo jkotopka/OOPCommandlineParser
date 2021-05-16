@@ -31,7 +31,7 @@ public class Parser {
 
             if (options.containsKey(option))
                 executeOptionAndUpdateIndex(option);
-            else if (arg.startsWith("-"))
+            else if (arg.startsWith("-")) //XXX: not super happy about this but it seems to work as intended
                 invalidOptionSelected(arg);
             else
                 executeOptionAndUpdateIndex(Switch.COLLECT_PHRASE);
