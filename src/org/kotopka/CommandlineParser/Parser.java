@@ -60,6 +60,7 @@ public class Parser {
     }
 
     private boolean isInvalidOption(String arg) {
+        // XXX: checks if the arg looks like a valid option but isn't
         for (String s : validDelimiters)
             if (arg.startsWith(s)) return true;
 
