@@ -6,24 +6,26 @@ public class PhraseCollector implements Option {
     private static String NEWLINE = System.lineSeparator();
 
     private String commandlineSwitch;
+    private String description;
     private List<String> value;
 
     public PhraseCollector( ) {
         this.commandlineSwitch = "";
+        this.description = "Collect phrase words";
         this.value = new ArrayList<>();
     }
 
     @Override
-    public int getInt() { return 0; }
-
-    @Override
-    public boolean getBool() { return true; }
+    public String getState() {
+        return description + ": " + value;
+    }
 
     @Override
     public String getString() { return String.join(" ", value); }
 
+    @Override
     public String getHelp() {
-        return String.format("\t%-5s\t%s", commandlineSwitch, "Collect phrase words");
+        return String.format("\t%-5s\t%s", commandlineSwitch, description);
     }
 
     @Override

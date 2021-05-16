@@ -1,14 +1,14 @@
-public class MinWordLen implements Option {
+public class ExcludeDuplicates implements Option {
 
     private static String NEWLINE = System.lineSeparator();
 
     private String commandlineSwitch;
     private String description;
-    private int value;
+    private boolean value;
 
-    public MinWordLen( ) {
-        this.commandlineSwitch = "-minwl";
-        this.description = "Minimum word length";
+    public ExcludeDuplicates( ) {
+        this.commandlineSwitch = "-ed";
+        this.description = "Exclude Duplicates";
     }
 
     @Override
@@ -17,7 +17,7 @@ public class MinWordLen implements Option {
     }
 
     @Override
-    public int getInt() { return value; }
+    public boolean getBool() { return value; }
 
     @Override
     public String getHelp() {
@@ -25,18 +25,11 @@ public class MinWordLen implements Option {
     }
 
     @Override
-    public String getSwitch() {
-        return commandlineSwitch;
-    }
+    public String getSwitch() { return commandlineSwitch; }
 
     @Override
     public int execute(String[] args, int argIndex) {
-        try {
-            value = Integer.parseInt(args[++argIndex]);
-        } catch (NumberFormatException nfe) {
-            System.err.println("Invalid number format");
-        }
-
+        value = true;
         return ++argIndex;
     }
 

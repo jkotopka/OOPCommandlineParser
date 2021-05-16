@@ -1,8 +1,9 @@
 public interface Option {
     String getSwitch();
     String getHelp();
+    String getState();
     int execute(String[] args, int argIndex);
-    int getInt();
-    boolean getBool();
-    String getString();
+    default int getInt() { return  0; }
+    default boolean getBool() { return false; }
+    default String getString() { return ""; }
 }
