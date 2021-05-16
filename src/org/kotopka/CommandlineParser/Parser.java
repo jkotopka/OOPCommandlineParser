@@ -12,14 +12,14 @@ public class Parser {
 
     public Parser(String[] args, Switch defaultOption) {
         Objects.requireNonNull(args, "args argument cannot be null");
-        Objects.requireNonNull(defaultOption, "defaultOptions argument cannot be null");
+        Objects.requireNonNull(defaultOption, "optionSwitch argument cannot be null");
 
         this.args = args;
         this.options = new LinkedHashMap<>();
         this.defaultOption = defaultOption;
         this.validDelimiters = new HashSet<>();
 
-        validDelimiters.add("-"); // set - as default commandline switch delimiter, maybe have a way to un-set this
+        validDelimiters.add(Switch.DEFAULT_DELIMITER.getLabel());
     }
 
     public Parser addValidDelimiter(String switchDelimiter) {
@@ -97,7 +97,6 @@ public class Parser {
 
     public static void main(String[] args) {
         Parser parser = new Parser(args, Switch.COLLECT_PHRASE)
-                .addValidDelimiter("-")
                 .addOptions(
                         new MaxWordLen(),
                         new MinWordLen(),
