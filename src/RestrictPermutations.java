@@ -1,13 +1,9 @@
-public class RestrictPermutations implements Option {
+public class RestrictPermutations extends AbstractOption{
 
-    private static String NEWLINE = System.lineSeparator();
-
-    private String commandlineSwitch;
-    private String description;
     private boolean value;
 
     public RestrictPermutations( ) {
-        this.commandlineSwitch = "-rp";
+        this.commandlineSwitch = Switch.RESTRICT_PERMUTATIONS;
         this.description = "Restrict Permutations";
     }
 
@@ -20,16 +16,9 @@ public class RestrictPermutations implements Option {
     public boolean getBool() { return value; }
 
     @Override
-    public String getHelp() {
-        return String.format("\t%-5s\t%s", commandlineSwitch, description);
-    }
-
-    @Override
-    public String getSwitch() { return commandlineSwitch; }
-
-    @Override
     public int execute(String[] args, int argIndex) {
         value = true;
+
         return ++argIndex;
     }
 

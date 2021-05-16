@@ -1,13 +1,9 @@
-public class MinWordLen implements Option {
+public class MinWordLen extends AbstractOption{
 
-    private static String NEWLINE = System.lineSeparator();
-
-    private String commandlineSwitch;
-    private String description;
     private int value;
 
     public MinWordLen( ) {
-        this.commandlineSwitch = "-minwl";
+        this.commandlineSwitch = Switch.MIN_WORD_LENGTH;
         this.description = "Minimum word length";
     }
 
@@ -18,16 +14,6 @@ public class MinWordLen implements Option {
 
     @Override
     public int getInt() { return value; }
-
-    @Override
-    public String getHelp() {
-        return String.format("\t%-5s\t%s", commandlineSwitch, description);
-    }
-
-    @Override
-    public String getSwitch() {
-        return commandlineSwitch;
-    }
 
     @Override
     public int execute(String[] args, int argIndex) {

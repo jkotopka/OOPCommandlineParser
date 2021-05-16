@@ -1,13 +1,9 @@
-public class MaxWordLen implements Option {
+public class MaxWordLen extends AbstractOption {
 
-    private static String NEWLINE = System.lineSeparator();
-
-    private String commandlineSwitch;
-    private String description;
     private int value;
 
     public MaxWordLen( ) {
-        this.commandlineSwitch = "-maxwl";
+        this.commandlineSwitch = Switch.MAX_WORD_LENGTH;
         this.description = "Maximum word length";
         this.value = Integer.MAX_VALUE;
     }
@@ -19,14 +15,6 @@ public class MaxWordLen implements Option {
 
     @Override
     public int getInt() { return value; }
-
-    @Override
-    public String getHelp() {
-        return String.format("\t%-5s\t%s", commandlineSwitch, description);
-    }
-
-    @Override
-    public String getSwitch() { return commandlineSwitch; }
 
     @Override
     public int execute(String[] args, int argIndex) {
