@@ -3,14 +3,14 @@ import java.util.*;
 public class Parser {
 
     private final String[] args;
-    private final Map<String, Option> optionMap;
+    private final Map<Switch, Option> optionMap;
 
     public Parser(String[] args) {
         this.args = args;
         this.optionMap = new LinkedHashMap<>();
     }
 
-    public Parser addOption(Option option) { ;
+    public Parser addOption(Option option) {
         optionMap.put(option.getSwitch(), option);
 
         return this;
@@ -21,26 +21,26 @@ public class Parser {
 
         while (argIndex < args.length) {
             String arg = args[argIndex];
+            Switch option = Switch.get(arg);
 
-            if (optionMap.containsKey(arg)) {
-                argIndex = optionMap.get(arg).execute(args, argIndex);
+            if (optionMap.containsKey(option)) {
+                argIndex = optionMap.get(option).execute(args, argIndex);
             } else if (arg.startsWith("-")) {
                 System.err.println("Invalid option: " + arg);
                 printOptions();
                 System.exit(-1);
             } else {
-                // XXX: PhraseCollector has "" (blank String) for its key
-                argIndex = optionMap.get("").execute(args, argIndex);
+                argIndex = optionMap.get(Switch.NO_OPTION).execute(args, argIndex);
             }
         }
     }
 
-    public Option getOption(String commandlineSwitch) {
+    public Option getOption(Switch commandlineSwitch) {
         return optionMap.get(commandlineSwitch);
     }
 
     public void printOptions() {
-        optionMap.forEach((key, value) -> value.getHelp());
+        optionMap.forEach((key, value) -> System.out.println(value.getHelp()));
     }
 
     public void printValues() {
@@ -62,9 +62,9 @@ public class Parser {
         parser.parseArgs();
 
         parser.printOptions();
-        parser.printValues();
+//        parser.printValues();
         parser.printState();
 
-        System.out.println(parser.getOption("").getString());
+//        System.out.println(parser.getOption(Switch.NO_OPTION).getString());
     }
 }
