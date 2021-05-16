@@ -11,8 +11,8 @@ public class Parser {
     private final Set<String> validDelimiters;
 
     public Parser(String[] args, Switch defaultOption) {
-        Objects.requireNonNull(args, "Constructor argument cannot be null");
-        Objects.requireNonNull(defaultOption, "Constructor argument cannot be null");
+        Objects.requireNonNull(args, "args argument cannot be null");
+        Objects.requireNonNull(defaultOption, "defaultOptions argument cannot be null");
 
         this.args = args;
         this.options = new LinkedHashMap<>();
