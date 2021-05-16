@@ -8,14 +8,31 @@ public class Parser {
     private final String[] args;
     private final Map<Switch, Option> options;
     private final Switch defaultOption;
+    private final Set<String> validDelimiters;
 
     public Parser(String[] args, Switch defaultOption) {
+        Objects.requireNonNull(args, "Constructor argument cannot be null");
+        Objects.requireNonNull(defaultOption, "Constructor argument cannot be null");
+
         this.args = args;
         this.options = new LinkedHashMap<>();
         this.defaultOption = defaultOption;
+        this.validDelimiters = new HashSet<>();
+
+        validDelimiters.add("-"); // set - as default commandline switch delimiter, maybe have a way to un-set this
+    }
+
+    public Parser addValidDelimiter(String switchDelimiter) {
+        Objects.requireNonNull(switchDelimiter, "switchDelimiter argument cannot be null");
+
+        validDelimiters.add(switchDelimiter);
+
+        return this;
     }
 
     public Parser addOptions(Option... optionArgs) {
+        Objects.requireNonNull(optionArgs, "optionArgs argument cannot be null");
+
         for (Option o : optionArgs)
             options.put(o.getSwitch(), o);
 
@@ -23,7 +40,7 @@ public class Parser {
     }
 
     public Parser addOption(Option option) {
-        options.put(option.getSwitch(), option);
+        addOptions(option);
 
         return this;
     }
@@ -35,11 +52,18 @@ public class Parser {
 
             if (options.containsKey(option))
                 executeOptionAndUpdateIndex(option);
-            else if (arg.startsWith("-")) //XXX: not super happy about this but it seems to work as intended
+            else if (isInvalidOption(arg)) //XXX: not super happy about this but it seems to work as intended
                 printInvalidOptionMessageAndExit(arg);
             else
                 executeOptionAndUpdateIndex(defaultOption);
         }
+    }
+
+    private boolean isInvalidOption(String arg) {
+        for (String s : validDelimiters)
+            if (arg.startsWith(s)) return true;
+
+        return false;
     }
 
     private void executeOptionAndUpdateIndex(Switch option) {
@@ -53,6 +77,8 @@ public class Parser {
     }
 
     public Option getOption(Switch commandlineSwitch) {
+        Objects.requireNonNull(commandlineSwitch, "commandlineSwitch argument cannot be null");
+
         return options.get(commandlineSwitch);
     }
 
@@ -70,6 +96,7 @@ public class Parser {
 
     public static void main(String[] args) {
         Parser parser = new Parser(args, Switch.COLLECT_PHRASE)
+                .addValidDelimiter("-")
                 .addOptions(
                         new MaxWordLen(),
                         new MinWordLen(),
@@ -83,8 +110,9 @@ public class Parser {
 //        parser.printValues();
         parser.printState();
 
-//        System.out.println(parser.getOption(org.kotopka.parser.Switch.COLLECT_PHRASE).getString());
-//        System.out.println(parser.getOption(org.kotopka.parser.Switch.MAX_WORD_LENGTH).getInt());
-//        System.out.println(parser.getOption(org.kotopka.parser.Switch.RESTRICT_PERMUTATIONS).getBool());
+        System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
+        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
+        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
+        System.out.println(parser.getOption(Switch.EXCLUDE_DUPLICATES).getBool());
     }
 }
