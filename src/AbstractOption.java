@@ -1,7 +1,7 @@
 public abstract class AbstractOption implements Option {
 
-    protected Switch commandlineSwitch;
-    protected String description;
+    Switch commandlineSwitch;
+    String description;
 
     @Override
     public String getHelp() {
