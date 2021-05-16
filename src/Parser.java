@@ -4,15 +4,15 @@ public class Parser {
 
     private int argIndex;
     private final String[] args;
-    private final Map<Switch, Option> optionMap;
+    private final Map<Switch, Option> options;
 
     public Parser(String[] args) {
         this.args = args;
-        this.optionMap = new LinkedHashMap<>();
+        this.options = new LinkedHashMap<>();
     }
 
     public Parser addOption(Option option) {
-        optionMap.put(option.getSwitch(), option);
+        options.put(option.getSwitch(), option);
 
         return this;
     }
@@ -22,7 +22,7 @@ public class Parser {
             String arg    = args[argIndex];
             Switch option = Switch.get(arg);
 
-            if (optionMap.containsKey(option))
+            if (options.containsKey(option))
                 executeOptionAndUpdateIndex(option);
             else if (arg.startsWith("-"))
                 invalidOptionSelected(arg);
@@ -32,7 +32,7 @@ public class Parser {
     }
 
     private void executeOptionAndUpdateIndex(Switch option) {
-        argIndex = optionMap.get(option).execute(args, argIndex);
+        argIndex = options.get(option).execute(args, argIndex);
     }
 
     private void invalidOptionSelected(String arg) {
@@ -42,19 +42,19 @@ public class Parser {
     }
 
     public Option getOption(Switch commandlineSwitch) {
-        return optionMap.get(commandlineSwitch);
+        return options.get(commandlineSwitch);
     }
 
     public void printOptions() {
-        optionMap.forEach((key, value) -> System.out.println(value.getHelp()));
+        options.forEach((key, value) -> System.out.println(value.getHelp()));
     }
 
     public void printValues() {
-        optionMap.forEach((key, value) -> System.out.println(value));
+        options.forEach((key, value) -> System.out.println(value));
     }
 
     public void printState() {
-        optionMap.forEach((key, value) -> System.out.println(value.getState()));
+        options.forEach((key, value) -> System.out.println(value.getState()));
     }
 
     public static void main(String[] args) {
@@ -67,12 +67,12 @@ public class Parser {
 
         parser.parseArgs();
 
-        parser.printOptions();
-        parser.printValues();
+//        parser.printOptions();
+//        parser.printValues();
         parser.printState();
 
-        System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
-        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
-        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
+//        System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
+//        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
+//        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
     }
 }
