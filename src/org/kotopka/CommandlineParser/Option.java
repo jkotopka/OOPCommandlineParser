@@ -1,3 +1,5 @@
+package org.kotopka.CommandlineParser;
+
 public interface Option {
     Switch getSwitch();
     String getHelp();

@@ -1,10 +1,12 @@
-public class ExcludeDuplicates extends AbstractOption {
+package org.kotopka.CommandlineParser;
+
+public class RestrictPermutations extends AbstractOption{
 
     private boolean value;
 
-    public ExcludeDuplicates( ) {
-        this.commandlineSwitch = Switch.EXCLUDE_DUPLICATES;
-        this.description = "Exclude Duplicates";
+    public RestrictPermutations( ) {
+        this.commandlineSwitch = Switch.RESTRICT_PERMUTATIONS;
+        this.description = "Restrict Permutations";
     }
 
     @Override

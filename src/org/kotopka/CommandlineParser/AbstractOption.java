@@ -1,3 +1,5 @@
+package org.kotopka.CommandlineParser;
+
 public abstract class AbstractOption implements Option {
 
     Switch commandlineSwitch;

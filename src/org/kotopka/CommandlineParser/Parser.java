@@ -1,3 +1,5 @@
+package org.kotopka.CommandlineParser;
+
 import java.util.*;
 
 public class Parser {
@@ -81,8 +83,8 @@ public class Parser {
 //        parser.printValues();
         parser.printState();
 
-//        System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
-//        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
-//        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
+//        System.out.println(parser.getOption(org.kotopka.parser.Switch.COLLECT_PHRASE).getString());
+//        System.out.println(parser.getOption(org.kotopka.parser.Switch.MAX_WORD_LENGTH).getInt());
+//        System.out.println(parser.getOption(org.kotopka.parser.Switch.RESTRICT_PERMUTATIONS).getBool());
     }
 }

@@ -1,11 +1,12 @@
-public class MaxWordLen extends AbstractOption {
+package org.kotopka.CommandlineParser;
+
+public class MinWordLen extends AbstractOption{
 
     private int value;
 
-    public MaxWordLen( ) {
-        this.commandlineSwitch = Switch.MAX_WORD_LENGTH;
-        this.description = "Maximum word length";
-        this.value = Integer.MAX_VALUE;
+    public MinWordLen( ) {
+        this.commandlineSwitch = Switch.MIN_WORD_LENGTH;
+        this.description = "Minimum word length";
     }
 
     @Override
