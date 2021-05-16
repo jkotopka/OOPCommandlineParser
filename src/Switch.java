@@ -18,7 +18,7 @@ public enum Switch {
     EXCLUDE_WORD("-ew"),
     INCLUDE_WORD_WITH_SUFFIX("-iws"),
     HELP("-h"),
-    NO_OPTION("");
+    COLLECT_PHRASE(""); // XXX: not really a proper switch
 
     private final String label;
 
@@ -43,7 +43,7 @@ public enum Switch {
         if (ENUM_MAP.containsKey(name))
             return ENUM_MAP.get(name.toLowerCase());
         else
-            return NO_OPTION;
+            return COLLECT_PHRASE;
     }
 
     @Override
