@@ -5,10 +5,12 @@ public class Parser {
     private int argIndex;
     private final String[] args;
     private final Map<Switch, Option> options;
+    private final Switch defaultOption;
 
-    public Parser(String[] args) {
+    public Parser(String[] args, Switch defaultOption) {
         this.args = args;
         this.options = new LinkedHashMap<>();
+        this.defaultOption = defaultOption;
     }
 
     public Parser addOptions(Option... optionArgs) {
@@ -34,7 +36,7 @@ public class Parser {
             else if (arg.startsWith("-")) //XXX: not super happy about this but it seems to work as intended
                 invalidOptionSelected(arg);
             else
-                executeOptionAndUpdateIndex(Switch.COLLECT_PHRASE);
+                executeOptionAndUpdateIndex(defaultOption);
         }
     }
 
@@ -65,7 +67,7 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        Parser parser = new Parser(args)
+        Parser parser = new Parser(args, Switch.COLLECT_PHRASE)
                 .addOptions(
                         new MaxWordLen(),
                         new MinWordLen(),
