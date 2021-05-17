@@ -14,7 +14,6 @@ public class Parser {
         Objects.requireNonNull(args, "args argument cannot be null");
         Objects.requireNonNull(defaultOption, "optionSwitch argument cannot be null");
 
-//        this.args = args;
         this.argList = List.of(args);
         this.options = new LinkedHashMap<>();
         this.defaultOption = defaultOption;
