@@ -19,7 +19,7 @@ public class Parser {
         this.defaultOption = defaultOption;
         this.validDelimiters = new HashSet<>();
 
-        validDelimiters.add(Switch.DEFAULT_DELIMITER.getLabel());
+        validDelimiters.add(Switch.getDefault());
     }
 
     public Parser addValidDelimiter(String switchDelimiter) {
