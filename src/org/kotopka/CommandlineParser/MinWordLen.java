@@ -19,7 +19,7 @@ public class MinWordLen extends AbstractOption{
 
     @Override
     public int execute(Parser parser) {
-        int argIndex = parser.argIndex;
+        int argIndex = parser.getArgIndex();
         String arg = parser.getArgs().get(++argIndex);
 
         try {
