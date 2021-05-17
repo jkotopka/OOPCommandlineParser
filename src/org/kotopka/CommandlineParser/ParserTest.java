@@ -20,17 +20,17 @@ public class ParserTest {
                 new ExcludeDuplicates(),
                 new HelpMessage(),
                 new ExtendedHelpMessage(),
-                new PhraseCollector());
+                new CollectPhrase());
 
         parser.parseArgs();
 
         parser.printHelp();
 //        parser.printValues();
-//        parser.printState();
+        parser.printState();
 
         System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
-        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
-        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
-        System.out.println(parser.getOption(Switch.EXCLUDE_DUPLICATES).getBool());
+//        System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());
+//        System.out.println(parser.getOption(Switch.RESTRICT_PERMUTATIONS).getBool());
+//        System.out.println(parser.getOption(Switch.EXCLUDE_DUPLICATES).getBool());
     }
 }
