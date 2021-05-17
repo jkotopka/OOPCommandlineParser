@@ -4,8 +4,7 @@ import java.util.*;
 
 public class Parser {
 
-    int argIndex;
-//    final String[] args;
+    private int argIndex;
     private final List<String> argList;
     private final Map<Switch, Option> options;
     private final Switch defaultOption;
@@ -108,8 +107,8 @@ public class Parser {
                         new MinWordLen(),
                         new RestrictPermutations(),
                         new ExcludeDuplicates(),
-                        new PhraseCollector(),
-                        new HelpMessage());
+                        new HelpMessage(),
+                        new PhraseCollector());
 
         parser.parseArgs();
 
