@@ -19,6 +19,7 @@ public class Parser {
         this.defaultOption = defaultOption;
         this.validDelimiters = new HashSet<>();
 
+        // TODO: maybe make this one field and remove method to set it below
         validDelimiters.add(Switch.getDefault());
     }
 
@@ -102,8 +103,10 @@ public class Parser {
     public static void main(String[] args) {
         Parser parser = new Parser(args, Switch.COLLECT_PHRASE)
                 .addOptions(
-                        new MaxWordLen(),
+                        new DictFile(),
                         new MinWordLen(),
+                        new MaxWordLen(),
+                        new ExcludeFile(),
                         new RestrictPermutations(),
                         new ExcludeDuplicates(),
                         new HelpMessage(),
