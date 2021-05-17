@@ -5,12 +5,12 @@ public class MaxWords extends AbstractOption {
     private int value;
 
     public MaxWords( ) {
-        this.commandlineSwitch = Switch.MAX_RESULTS;
-        this.description = "Max Results";
+        this.commandlineSwitch = Switch.MAX_WORDS;
+        this.description = "Max words";
         this.value = Integer.MAX_VALUE;
         this.extendedHelpMessage =
-                "Max Results -- " +
-                "Maximum number of anagrams to be generated." + NEWLINE +
+                "Max Words -- " +
+                "Maximum number of words in anagram." + NEWLINE +
                 "\tUsage: " + commandlineSwitch + " <max>";
     }
 

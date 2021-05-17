@@ -5,13 +5,14 @@ public class Timeout extends AbstractOption {
     private int value;
 
     public Timeout( ) {
-        this.commandlineSwitch = Switch.MAX_WORDS;
-        this.description = "Max words";
+        this.commandlineSwitch = Switch.TIMEOUT;
+        this.description = "Timeout";
         this.value = Integer.MAX_VALUE;
         this.extendedHelpMessage =
-                "Max Words -- " +
-                "Maximum number of words in anagram. " + NEWLINE +
-                "\tUsage: " + commandlineSwitch + " <max>";
+                "Timeout -- " +
+                "Time in seconds to attempt anagram generation. " +
+                "Note: this is a best attempt effort and the actual running time may  be longer or shorter " + NEWLINE +
+                "\tUsage: " + commandlineSwitch + " <timeout in seconds>";
     }
 
     @Override
