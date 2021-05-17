@@ -20,12 +20,14 @@ public class CommandlineParser implements Parser {
         this.validDelimiter = Switch.getDefault();
     }
 
+    @Override
     public Parser addOption(Option option) {
         addOptions(option);
 
         return this;
     }
 
+    @Override
     public Parser addOptions(Option... optionArgs) {
         Objects.requireNonNull(optionArgs, "optionArgs argument cannot be null");
 
@@ -40,28 +42,35 @@ public class CommandlineParser implements Parser {
         return this;
     }
 
+    @Override
     public Option getOption(Switch commandlineSwitch) {
         Objects.requireNonNull(commandlineSwitch, "commandlineSwitch argument cannot be null");
 
         return options.get(commandlineSwitch);
     }
 
+    @Override
     public void printOptions() {
         options.forEach((key, value) -> System.out.println(value.getHelp()));
     }
 
+    @Override
     public void printValues() {
         options.forEach((key, value) -> System.out.println(value));
     }
 
+    @Override
     public void printState() {
         options.forEach((key, value) -> System.out.println(value.getState()));
     }
 
+    @Override
     public boolean hasNextArg() { return argIndex < argList.size() - 1; }
 
+    @Override
     public String getNextArg() { return argList.get(++argIndex); }
 
+    @Override
     public void parseArgs() {
         while (argIndex < argList.size()) {
             String arg    = argList.get(argIndex);
