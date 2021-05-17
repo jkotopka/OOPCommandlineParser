@@ -3,6 +3,7 @@ package org.kotopka.CommandlineParser;
 public interface Option {
     Switch getSwitch();
     String getHelp();
+    String getExtendedHelp();
     String getState();
     int execute(Parser parser);
     default int getInt() { return  0; }
