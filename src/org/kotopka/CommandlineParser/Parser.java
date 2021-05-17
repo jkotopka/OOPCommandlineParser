@@ -9,7 +9,7 @@ public class Parser {
     private final List<String> argList;
     private final Map<Switch, Option> options;
     private final Switch defaultOption;
-    private final Set<String> validDelimiters;
+    private final String validDelimiter;
 
     public Parser(String[] args, Switch defaultOption) {
         Objects.requireNonNull(args, "args argument cannot be null");
@@ -18,23 +18,12 @@ public class Parser {
         this.argList = List.of(args);
         this.options = new LinkedHashMap<>();
         this.defaultOption = defaultOption;
-        this.validDelimiters = new HashSet<>();
-
-        // TODO: maybe make this one field and remove method to set it below
-        validDelimiters.add(Switch.getDefault());
+        this.validDelimiter = Switch.getDefault();
     }
 
     int getArgIndex() { return argIndex; }
 
     List<String> getArgs() { return argList; }
-
-    public Parser addValidDelimiter(String switchDelimiter) {
-        Objects.requireNonNull(switchDelimiter, "switchDelimiter argument cannot be null");
-
-        validDelimiters.add(switchDelimiter);
-
-        return this;
-    }
 
     public Parser addOptions(Option... optionArgs) {
         Objects.requireNonNull(optionArgs, "optionArgs argument cannot be null");
@@ -75,11 +64,7 @@ public class Parser {
     }
 
     private boolean isInvalidOption(String arg) {
-        // XXX: checks if the arg looks like a valid option but isn't
-        for (String s : validDelimiters)
-            if (arg.startsWith(s)) return true;
-
-        return false;
+        return arg.startsWith(validDelimiter);
     }
 
     private void printInvalidOptionMessageAndExit(String arg) {
