@@ -40,10 +40,6 @@ public class CommandlineParser implements Parser {
         return this;
     }
 
-    public int getArgIndex() { return argIndex; }
-
-    public List<String> getArgs() { return argList; }
-
     public Option getOption(Switch commandlineSwitch) {
         Objects.requireNonNull(commandlineSwitch, "commandlineSwitch argument cannot be null");
 
@@ -62,22 +58,30 @@ public class CommandlineParser implements Parser {
         options.forEach((key, value) -> System.out.println(value.getState()));
     }
 
+    public boolean hasNextArg() { return argIndex < argList.size() - 1; }
+
+    public String getNextArg() { return argList.get(++argIndex); }
+
     public void parseArgs() {
         while (argIndex < argList.size()) {
             String arg    = argList.get(argIndex);
             Switch option = Switch.get(arg);
 
-            if (options.containsKey(option))
-                executeOptionAndUpdateIndex(option);
-            else if (isInvalidOption(arg))
+            if (options.containsKey(option)) {
+                executeOption(option);
+            } else if (isInvalidOption(arg)) {
                 printInvalidOptionMessageAndExit(arg);
-            else
-                executeOptionAndUpdateIndex(defaultOption);
+            } else {
+                argIndex--; // XXX: rollback the index one to get all input strings
+                executeOption(defaultOption);
+            }
+
+            argIndex++;
         }
     }
 
-    private void executeOptionAndUpdateIndex(Switch option) {
-        argIndex = options.get(option).execute(this);
+    private void executeOption(Switch option) {
+        options.get(option).execute(this);
     }
 
     private boolean isInvalidOption(String arg) {
