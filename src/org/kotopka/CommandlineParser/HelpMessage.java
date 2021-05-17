@@ -23,4 +23,9 @@ public class HelpMessage extends AbstractOption {
         return parser.getArgIndex() + 1;
     }
 
+    @Override
+    public String toString() {
+        return commandlineSwitch + " " + value;
+    }
+
 }
