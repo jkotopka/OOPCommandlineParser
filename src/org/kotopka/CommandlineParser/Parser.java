@@ -101,6 +101,7 @@ public class Parser {
                 new RestrictPermutations(),
                 new ExcludeDuplicates(),
                 new HelpMessage(),
+                new ExtendedHelpMessage(),
                 new PhraseCollector());
 
         parser.parseArgs();
