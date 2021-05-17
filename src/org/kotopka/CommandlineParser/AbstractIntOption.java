@@ -15,12 +15,16 @@ public class AbstractIntOption extends AbstractOption {
     @Override
     public int execute(Parser parser) {
         int argIndex = parser.getArgIndex();
-        String arg = parser.getArgs().get(++argIndex);
+        String arg = "";
 
         try {
+            arg = parser.getArgs().get(++argIndex);
             value = Integer.parseInt(arg);
         } catch (NumberFormatException nfe) {
             System.err.println("Invalid number format: " + arg);
+            System.exit(-1);
+        } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
+            System.err.println("Cannot parse argument! Please ensure the correct parameter was provided.");
             System.exit(-1);
         }
 
