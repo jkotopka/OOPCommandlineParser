@@ -42,7 +42,7 @@ public enum Switch {
 
     public String getLabel() { return this.label; }
 
-    public String getDefault() { return DEFAULT_DELIMITER.label; }
+    public static String getDefault() { return DEFAULT_DELIMITER.label; }
 
     public static Switch get(String name) {
         return ENUM_MAP.get(name.toLowerCase());
