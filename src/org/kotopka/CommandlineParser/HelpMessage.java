@@ -12,4 +12,11 @@ public class HelpMessage extends AbstractBooleanOption {
                 "\tUsage: " + commandlineSwitch;
     }
 
+    @Override
+    public int execute(Parser parser) {
+        parser.printOptions();
+
+        return parser.getArgIndex() + 1;
+    }
+
 }
