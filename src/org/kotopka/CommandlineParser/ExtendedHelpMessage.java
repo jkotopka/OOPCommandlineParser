@@ -2,9 +2,7 @@ package org.kotopka.CommandlineParser;
 
 import java.util.List;
 
-public class ExtendedHelpMessage extends AbstractOption {
-
-    private boolean value;
+public class ExtendedHelpMessage extends AbstractBooleanOption {
 
     public ExtendedHelpMessage() {
         this.commandlineSwitch = Switch.EXTENDED_HELP;
@@ -13,11 +11,6 @@ public class ExtendedHelpMessage extends AbstractOption {
                 "Extended Help -- " +
                 "Get extended help on commandline switch options." + NEWLINE +
                 "\tUsage: " + commandlineSwitch + " <option>";
-    }
-
-    @Override
-    public String getState() {
-        return description + ": " + value;
     }
 
     @Override
@@ -51,11 +44,6 @@ public class ExtendedHelpMessage extends AbstractOption {
         } catch (Exception e) {
             System.err.println("Unknown option: " + arg);
         }
-    }
-
-    @Override
-    public String toString() {
-        return commandlineSwitch + " " + value;
     }
 
 }
