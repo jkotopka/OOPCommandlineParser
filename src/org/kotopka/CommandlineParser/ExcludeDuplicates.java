@@ -6,7 +6,7 @@ public class ExcludeDuplicates extends AbstractOption {
 
     public ExcludeDuplicates( ) {
         this.commandlineSwitch = Switch.EXCLUDE_DUPLICATES;
-        this.description = "Exclude Duplicates";
+        this.description = "Exclude duplicates";
     }
 
     @Override

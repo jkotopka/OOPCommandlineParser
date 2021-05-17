@@ -6,7 +6,7 @@ public class RestrictPermutations extends AbstractOption{
 
     public RestrictPermutations( ) {
         this.commandlineSwitch = Switch.RESTRICT_PERMUTATIONS;
-        this.description = "Restrict Permutations";
+        this.description = "Restrict permutations";
     }
 
     @Override
