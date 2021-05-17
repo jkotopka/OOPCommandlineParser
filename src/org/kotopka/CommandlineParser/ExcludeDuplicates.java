@@ -21,7 +21,7 @@ public class ExcludeDuplicates extends AbstractOption {
     public int execute(Parser parser) {
         value = true;
 
-        return parser.argIndex + 1;
+        return parser.getArgIndex() + 1;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class HelpMessage extends AbstractOption {
 
         parser.printOptions();
 
-        return parser.argIndex + 1;
+        return parser.getArgIndex() + 1;
     }
 
 }
