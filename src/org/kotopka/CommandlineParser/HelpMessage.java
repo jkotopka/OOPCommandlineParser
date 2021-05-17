@@ -6,12 +6,12 @@ public class HelpMessage extends AbstractOption {
 
     public HelpMessage() {
         this.commandlineSwitch = Switch.HELP;
-        this.description = "This help message";
+        this.description = "Get help";
     }
 
     @Override
     public String getState() {
-        return "Help invoked: " + value;
+        return description + ": " + value;
     }
 
     @Override
