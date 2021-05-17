@@ -19,8 +19,9 @@ public class MaxWordLen extends AbstractOption {
     public int getInt() { return value; }
 
     @Override
-    public int execute(String[] args, int argIndex) {
-        String arg = args[++argIndex];
+    public int execute(Parser parser) {
+        int argIndex = parser.argIndex;
+        String arg = parser.getArgs().get(++argIndex);
 
         try {
             value = Integer.parseInt(arg);
@@ -31,6 +32,7 @@ public class MaxWordLen extends AbstractOption {
 
         return ++argIndex;
     }
+
 
     @Override
     public String toString() {

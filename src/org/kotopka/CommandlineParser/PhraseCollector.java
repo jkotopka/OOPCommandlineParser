@@ -22,9 +22,11 @@ public class PhraseCollector extends AbstractOption {
     public String getString() { return String.join(" ", value); }
 
     @Override
-    public int execute(String[] args, int argIndex) {
-        while (argIndex < args.length)
-            value.add(args[argIndex++]);
+    public int execute(Parser parser) {
+        int argIndex = parser.getArgIndex();
+
+        while (argIndex < parser.getArgs().size())
+            value.add(parser.getArgs().get(argIndex++));
 
         return argIndex;
     }

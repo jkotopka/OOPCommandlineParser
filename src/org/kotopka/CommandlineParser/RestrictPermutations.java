@@ -18,10 +18,10 @@ public class RestrictPermutations extends AbstractOption{
     public boolean getBool() { return value; }
 
     @Override
-    public int execute(String[] args, int argIndex) {
+    public int execute(Parser parser) {
         value = true;
 
-        return ++argIndex;
+        return parser.getArgIndex() + 1;
     }
 
     @Override

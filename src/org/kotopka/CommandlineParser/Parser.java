@@ -4,8 +4,9 @@ import java.util.*;
 
 public class Parser {
 
-    private int argIndex;
-    private final String[] args;
+    int argIndex;
+//    final String[] args;
+    private final List<String> argList;
     private final Map<Switch, Option> options;
     private final Switch defaultOption;
     private final Set<String> validDelimiters;
@@ -14,7 +15,8 @@ public class Parser {
         Objects.requireNonNull(args, "args argument cannot be null");
         Objects.requireNonNull(defaultOption, "optionSwitch argument cannot be null");
 
-        this.args = args;
+//        this.args = args;
+        this.argList = List.of(args);
         this.options = new LinkedHashMap<>();
         this.defaultOption = defaultOption;
         this.validDelimiters = new HashSet<>();
@@ -45,9 +47,13 @@ public class Parser {
         return this;
     }
 
+    int getArgIndex() { return argIndex; }
+
+    List<String> getArgs() { return argList; }
+
     public void parseArgs() {
-        while (argIndex < args.length) {
-            String arg    = args[argIndex];
+        while (argIndex < argList.size()) {
+            String arg    = argList.get(argIndex);
             Switch option = Switch.get(arg);
 
             if (options.containsKey(option))
@@ -60,7 +66,7 @@ public class Parser {
     }
 
     private void executeOptionAndUpdateIndex(Switch option) {
-        argIndex = options.get(option).execute(args, argIndex);
+        argIndex = options.get(option).execute(this);
     }
 
     private boolean isInvalidOption(String arg) {
@@ -102,7 +108,8 @@ public class Parser {
                         new MinWordLen(),
                         new RestrictPermutations(),
                         new ExcludeDuplicates(),
-                        new PhraseCollector());
+                        new PhraseCollector(),
+                        new HelpMessage());
 
         parser.parseArgs();
 
