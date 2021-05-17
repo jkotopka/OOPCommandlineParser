@@ -13,12 +13,11 @@ public class AbstractIntOption extends AbstractOption {
     public int getInt() { return value; }
 
     @Override
-    public int execute(Parser parser) {
-        int argIndex = parser.getArgIndex();
+    public void execute(Parser parser) {
         String arg = "";
 
         try {
-            arg = parser.getArgs().get(++argIndex);
+            arg = parser.getNextArg();
             value = Integer.parseInt(arg);
         } catch (NumberFormatException nfe) {
             System.err.println("Invalid number format: " + arg);
@@ -27,8 +26,6 @@ public class AbstractIntOption extends AbstractOption {
             System.err.println(commandlineSwitch + ": Cannot parse argument! Please ensure the correct parameter was provided.");
             System.exit(-1);
         }
-
-        return ++argIndex;
     }
 
     @Override

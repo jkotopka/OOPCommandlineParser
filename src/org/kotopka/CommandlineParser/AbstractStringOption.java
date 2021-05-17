@@ -2,7 +2,7 @@ package org.kotopka.CommandlineParser;
 
 public class AbstractStringOption extends AbstractOption {
 
-    String value;
+    String value = "";
 
     @Override
     public String getState() {
@@ -13,17 +13,13 @@ public class AbstractStringOption extends AbstractOption {
     public String getString() { return value; }
 
     @Override
-    public int execute(Parser parser) {
-        int argIndex = parser.getArgIndex();
-
+    public void execute(Parser parser) {
         try {
-            value = parser.getArgs().get(++argIndex);
+            value = parser.getNextArg();
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
             System.err.println(commandlineSwitch + ": Cannot parse argument! Please ensure the correct parameter was provided.");
             System.exit(-1);
         }
-
-        return ++argIndex;
     }
 
     @Override

@@ -13,14 +13,13 @@ public class AbstractBooleanOption extends AbstractOption {
     public boolean getBool() { return value; }
 
     @Override
-    public int execute(Parser parser) {
+    public void execute(Parser parser) {
         value = true;
-
-        return parser.getArgIndex() + 1;
     }
 
     @Override
     public String toString() {
         return commandlineSwitch + " " + value;
     }
+
 }
