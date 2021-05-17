@@ -39,9 +39,13 @@ public class Parser {
     public Parser addOptions(Option... optionArgs) {
         Objects.requireNonNull(optionArgs, "optionArgs argument cannot be null");
 
-        // TODO: maybe add try/catch NPE block
-        for (Option o : optionArgs)
-            options.put(o.getSwitch(), o);
+        try {
+            for (Option o : optionArgs)
+                options.put(o.getSwitch(), o);
+        } catch (NullPointerException e) {
+            System.err.println("Parser initialization failed! Null option found. Please check that all Options are valid.");
+            System.exit(-1);
+        }
 
         return this;
     }
