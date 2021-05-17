@@ -8,6 +8,10 @@ public class DictFile extends AbstractOption {
         this.commandlineSwitch = Switch.DICT_FILE;
         this.description = "Dictionary file";
         this.value = "";
+        this.extendedHelpMessage =
+                "Dictionary file -- " +
+                "Name of file which contains words to be inserted into the dictionary." + NEWLINE +
+                "\tUsage: " + commandlineSwitch + " <filename>";
     }
 
     @Override

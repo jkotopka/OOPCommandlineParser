@@ -9,6 +9,10 @@ public class ExtendedHelpMessage extends AbstractOption {
     public ExtendedHelpMessage() {
         this.commandlineSwitch = Switch.EXTENDED_HELP;
         this.description = "Get extended help for option";
+        this.extendedHelpMessage =
+                "Extended Help -- " +
+                "Get extended help on commandline switch options." + NEWLINE +
+                "\tUsage: " + commandlineSwitch + " <option>";
     }
 
     @Override
