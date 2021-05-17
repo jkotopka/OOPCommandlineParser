@@ -3,13 +3,13 @@ package org.kotopka.CommandlineParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhraseCollector extends AbstractOption {
+public class CollectPhrase extends AbstractOption {
 
     private final List<String> value;
 
-    public PhraseCollector( ) {
+    public CollectPhrase( ) {
         this.commandlineSwitch = Switch.COLLECT_PHRASE;
-        this.description = "Collect phrase words";
+        this.description = "Collect words in phrase";
         this.value = new ArrayList<>();
     }
 
@@ -22,13 +22,9 @@ public class PhraseCollector extends AbstractOption {
     public String getString() { return String.join(" ", value); }
 
     @Override
-    public int execute(Parser parser) {
-        int argIndex = parser.getArgIndex();
-
-        while (argIndex < parser.getArgs().size())
-            value.add(parser.getArgs().get(argIndex++));
-
-        return argIndex;
+    public void execute(Parser parser) {
+        while (parser.hasNextArg())
+            value.add(parser.getNextArg());
     }
 
     @Override

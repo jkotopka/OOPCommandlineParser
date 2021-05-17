@@ -13,10 +13,10 @@ public class HelpMessage extends AbstractBooleanOption {
     }
 
     @Override
-    public int execute(Parser parser) {
-        parser.printOptions();
+    public void execute(Parser parser) {
+        value = true;
 
-        return parser.getArgIndex() + 1;
+        parser.printHelp();
     }
 
 }

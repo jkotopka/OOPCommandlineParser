@@ -5,7 +5,6 @@ public class ExcludeWord extends AbstractStringOption {
     public ExcludeWord( ) {
         this.commandlineSwitch = Switch.EXCLUDE_WORD;
         this.description = "Exclude word";
-        this.value = "";
         this.extendedHelpMessage =
                 "Exclude Word -- " +
                 "Exclude the word supplied as an option from appearing in the anagram." + NEWLINE +

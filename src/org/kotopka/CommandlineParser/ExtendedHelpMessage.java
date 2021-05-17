@@ -14,26 +14,22 @@ public class ExtendedHelpMessage extends AbstractBooleanOption {
     }
 
     @Override
-    public int execute(Parser parser) {
-        int argIndex = parser.getArgIndex();
-        List<String> args = parser.getArgs();
-        String arg = getArg(parser, argIndex, args);
+    public void execute(Parser parser) {
+        String arg = getArg(parser);
 
         value = true;
 
         printExtendedHelpMessage(arg, parser);
         System.exit(0);
-
-        return Integer.MAX_VALUE; // XXX: hackish workaround, never actually gets returned
     }
 
-    private String getArg(Parser parser, int argIndex, List<String> args) {
+    private String getArg(Parser parser) {
         String arg;
 
-        if (args.size() > 1 && argIndex < args.size() - 1)
-            arg = parser.getArgs().get(++argIndex);
+        if (parser.hasNextArg())
+            arg = parser.getNextArg();
         else
-            arg = commandlineSwitch.getLabel();
+            arg = commandlineSwitch.getLabel(); // if called without an <option> parameter
 
         return arg;
     }
