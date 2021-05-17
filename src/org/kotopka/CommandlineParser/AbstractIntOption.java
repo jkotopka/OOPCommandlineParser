@@ -24,7 +24,7 @@ public class AbstractIntOption extends AbstractOption {
             System.err.println("Invalid number format: " + arg);
             System.exit(-1);
         } catch (IndexOutOfBoundsException indexOutOfBoundsException) {
-            System.err.println("Cannot parse argument! Please ensure the correct parameter was provided.");
+            System.err.println(commandlineSwitch + ": Cannot parse argument! Please ensure the correct parameter was provided.");
             System.exit(-1);
         }
 
