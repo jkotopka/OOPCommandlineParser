@@ -20,6 +20,7 @@ public enum Switch {
     EXCLUDE_WORD("-ew"),
     INCLUDE_WORD_WITH_SUFFIX("-iws"),
     HELP("-h"),
+    EXTENDED_HELP("-xh"),
     COLLECT_PHRASE(""), // XXX: not really a proper switch
     DEFAULT_DELIMITER("-");
 
