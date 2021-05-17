@@ -27,12 +27,6 @@ public enum Switch {
 
     private static final Map<String, Switch> ENUM_MAP;
 
-    Switch(String label) {
-        this.label = label;
-    }
-
-    public String getLabel() { return this.label; }
-
     static {
         Map<String, Switch> map = new HashMap<>();
 
@@ -41,6 +35,14 @@ public enum Switch {
 
         ENUM_MAP = Collections.unmodifiableMap(map);
     }
+
+    Switch(String label) {
+        this.label = label;
+    }
+
+    public String getLabel() { return this.label; }
+
+    public String getDefault() { return DEFAULT_DELIMITER.label; }
 
     public static Switch get(String name) {
         return ENUM_MAP.get(name.toLowerCase());
