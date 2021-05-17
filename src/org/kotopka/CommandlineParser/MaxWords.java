@@ -1,8 +1,6 @@
 package org.kotopka.CommandlineParser;
 
-public class MaxWords extends AbstractOption {
-
-    private int value;
+public class MaxWords extends AbstractIntOption {
 
     public MaxWords( ) {
         this.commandlineSwitch = Switch.MAX_WORDS;
@@ -12,35 +10,6 @@ public class MaxWords extends AbstractOption {
                 "Max Words -- " +
                 "Maximum number of words in anagram." + NEWLINE +
                 "\tUsage: " + commandlineSwitch + " <max>";
-    }
-
-    @Override
-    public String getState() {
-        return description + ": " + value;
-    }
-
-    @Override
-    public int getInt() { return value; }
-
-    @Override
-    public int execute(Parser parser) {
-        int argIndex = parser.getArgIndex();
-        String arg = parser.getArgs().get(++argIndex);
-
-        try {
-            value = Integer.parseInt(arg);
-        } catch (NumberFormatException nfe) {
-            System.err.println("Invalid number format: " + arg);
-            System.exit(-1);
-        }
-
-        return ++argIndex;
-    }
-
-
-    @Override
-    public String toString() {
-        return commandlineSwitch + " " + value;
     }
 
 }
