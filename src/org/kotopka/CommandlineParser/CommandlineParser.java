@@ -12,7 +12,7 @@ public class CommandlineParser implements Parser {
 
     public CommandlineParser(String[] args, Switch defaultOption) {
         Objects.requireNonNull(args, "args argument cannot be null");
-        Objects.requireNonNull(defaultOption, "optionSwitch argument cannot be null");
+        Objects.requireNonNull(defaultOption, "defaultOption argument cannot be null");
 
         this.argList = List.of(args);
         this.options = new LinkedHashMap<>();
