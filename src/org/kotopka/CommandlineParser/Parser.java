@@ -2,6 +2,7 @@ package org.kotopka.CommandlineParser;
 
 import java.util.*;
 
+// TODO: add extended help option with detailed help messages for each Option class
 public class Parser {
 
     private int argIndex;
@@ -23,6 +24,10 @@ public class Parser {
         validDelimiters.add(Switch.getDefault());
     }
 
+    int getArgIndex() { return argIndex; }
+
+    List<String> getArgs() { return argList; }
+
     public Parser addValidDelimiter(String switchDelimiter) {
         Objects.requireNonNull(switchDelimiter, "switchDelimiter argument cannot be null");
 
@@ -34,6 +39,7 @@ public class Parser {
     public Parser addOptions(Option... optionArgs) {
         Objects.requireNonNull(optionArgs, "optionArgs argument cannot be null");
 
+        // TODO: maybe add try/catch NPE block
         for (Option o : optionArgs)
             options.put(o.getSwitch(), o);
 
@@ -45,10 +51,6 @@ public class Parser {
 
         return this;
     }
-
-    int getArgIndex() { return argIndex; }
-
-    List<String> getArgs() { return argList; }
 
     public void parseArgs() {
         while (argIndex < argList.size()) {
@@ -101,21 +103,21 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        Parser parser = new Parser(args, Switch.COLLECT_PHRASE)
-                .addOptions(
-                        new DictFile(),
-                        new MinWordLen(),
-                        new MaxWordLen(),
-                        new ExcludeFile(),
-                        new RestrictPermutations(),
-                        new ExcludeDuplicates(),
-                        new HelpMessage(),
-                        new PhraseCollector());
+        Parser parser = new Parser(args, Switch.COLLECT_PHRASE);
+        parser.addOptions(
+                new DictFile(),
+                new MinWordLen(),
+                new MaxWordLen(),
+                new ExcludeFile(),
+                new RestrictPermutations(),
+                new ExcludeDuplicates(),
+                new HelpMessage(),
+                new PhraseCollector());
 
         parser.parseArgs();
 
 //        parser.printOptions();
-//        parser.printValues();
+        parser.printValues();
         parser.printState();
 
         System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
