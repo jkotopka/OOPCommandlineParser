@@ -3,11 +3,11 @@ package org.kotopka.CommandlineParser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhraseCollector extends AbstractOption {
+public class CollectPhrase extends AbstractOption {
 
     private final List<String> value;
 
-    public PhraseCollector( ) {
+    public CollectPhrase( ) {
         this.commandlineSwitch = Switch.COLLECT_PHRASE;
         this.description = "Collect phrase words";
         this.value = new ArrayList<>();
