@@ -2,7 +2,6 @@ package org.kotopka.CommandlineParser;
 
 import java.util.*;
 
-// TODO: add extended help option with detailed help messages for each Option class
 public class Parser {
 
     private int argIndex;
