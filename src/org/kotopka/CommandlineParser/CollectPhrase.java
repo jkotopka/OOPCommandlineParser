@@ -9,7 +9,7 @@ public class CollectPhrase extends AbstractOption {
 
     public CollectPhrase( ) {
         this.commandlineSwitch = Switch.COLLECT_PHRASE;
-        this.description = "Collect phrase words";
+        this.description = "Collect words in phrase";
         this.value = new ArrayList<>();
     }
 
