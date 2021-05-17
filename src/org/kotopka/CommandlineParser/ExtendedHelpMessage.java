@@ -24,24 +24,33 @@ public class ExtendedHelpMessage extends AbstractOption {
     public int execute(Parser parser) {
         int argIndex = parser.getArgIndex();
         List<String> args = parser.getArgs();
-
-        if (args.size() == 1) {
-            System.err.println("Usage: blah blah blah...");
-            System.exit(-1);
-        }
-
-        String arg = parser.getArgs().get(++argIndex);
+        String arg = getArg(parser, argIndex, args);
 
         value = true;
 
-        if (Switch.get(arg) != null)
-            System.out.println(arg + ": " + parser.getOption(Switch.get(arg)).getExtendedHelp());
-        else
-            System.err.println("Unknown option: " + arg);
-
+        printExtendedHelpMessage(arg, parser);
         System.exit(0);
 
         return Integer.MAX_VALUE; // XXX: hackish workaround, never actually gets returned
+    }
+
+    private String getArg(Parser parser, int argIndex, List<String> args) {
+        String arg;
+
+        if (args.size() > 1 && argIndex < args.size() - 1)
+            arg = parser.getArgs().get(++argIndex);
+        else
+            arg = commandlineSwitch.getLabel();
+
+        return arg;
+    }
+
+    private void printExtendedHelpMessage(String arg, Parser parser) {
+        try {
+            System.out.println(arg + ": " + parser.getOption(Switch.get(arg)).getExtendedHelp());
+        } catch (Exception e) {
+            System.err.println("Unknown option: " + arg);
+        }
     }
 
     @Override
