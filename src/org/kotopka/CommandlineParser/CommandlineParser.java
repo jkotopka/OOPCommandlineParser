@@ -50,7 +50,7 @@ public class CommandlineParser implements Parser {
     }
 
     @Override
-    public void printOptions() {
+    public void printHelp() {
         options.forEach((key, value) -> System.out.println(value.getHelp()));
     }
 
@@ -99,7 +99,7 @@ public class CommandlineParser implements Parser {
 
     private void printInvalidOptionMessageAndExit(String arg) {
         System.err.println("Invalid option: " + arg);
-        printOptions();
+        printHelp();
         System.exit(-1);
     }
 

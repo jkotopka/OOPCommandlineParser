@@ -7,7 +7,7 @@ public interface Parser {
     boolean hasNextArg();
     String getNextArg();
     Option getOption(Switch commandlineSwitch);
-    void printOptions();
+    void printHelp();
     void printValues();
     void printState();
     void parseArgs();

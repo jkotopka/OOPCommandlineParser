@@ -24,9 +24,9 @@ public class ParserTest {
 
         parser.parseArgs();
 
-//        parser.printOptions();
+        parser.printHelp();
 //        parser.printValues();
-        parser.printState();
+//        parser.printState();
 
         System.out.println(parser.getOption(Switch.COLLECT_PHRASE).getString());
         System.out.println(parser.getOption(Switch.MAX_WORD_LENGTH).getInt());

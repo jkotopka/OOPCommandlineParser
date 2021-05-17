@@ -16,7 +16,7 @@ public class HelpMessage extends AbstractBooleanOption {
     public void execute(Parser parser) {
         value = true;
 
-        parser.printOptions();
+        parser.printHelp();
     }
 
 }
